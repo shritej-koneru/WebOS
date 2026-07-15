@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RetroOS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/crt.css">
+  <link rel="stylesheet" href="css/desktop.css">
+  <link rel="stylesheet" href="css/window.css">
+  <link rel="stylesheet" href="css/apps.css">
+</head>
+<body>
+  <div id="crt-screen">
+    <div id="crt-overlay"></div>
+
+    <div id="boot-screen">
+      <div id="boot-text"></div>
+      <div id="boot-progress">
+        <div id="boot-progress-bar"></div>
+      </div>
+    </div>
+
+    <div id="os" class="hidden">
+      <div id="desktop">
+        <div id="desktop-icons"></div>
+        <div id="windows-container"></div>
+      </div>
+      <div id="taskbar">
+        <button id="start-btn">&#9776; START</button>
+        <div id="taskbar-windows"></div>
+        <div id="taskbar-tray">
+          <span id="taskbar-clock"></span>
+        </div>
+      </div>
+      <div id="start-menu" class="hidden">
+        <div class="start-menu-header">RetroOS</div>
+        <div id="start-menu-apps"></div>
+        <div class="start-menu-footer">
+          <button id="shutdown-btn">&#9211; SHUTDOWN</button>
+        </div>
+      </div>
+      <div id="context-menu" class="hidden"></div>
+    </div>
+
+    <div id="shutdown-screen" class="hidden">
+      <div id="shutdown-text">Shutting down...</div>
+    </div>
+  </div>
+
+  <script src="js/boot.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/music.js"></script>
+  <script src="js/windowManager.js"></script>
+  <script src="js/multidesktop.js"></script>
+  <script src="js/desktop.js"></script>
+  <script src="js/clock.js"></script>
+  <script src="js/shortcuts.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/apps/terminal.js"></script>
+  <script src="js/apps/notepad.js"></script>
+  <script src="js/apps/paint.js"></script>
+  <script src="js/apps/calculator.js"></script>
+  <script src="js/apps/settings.js"></script>
+  <script src="js/apps/snake.js"></script>
+  <script src="js/apps/tetris.js"></script>
+  <script src="js/apps/pong.js"></script>
+  <script src="js/apps/breakout.js"></script>
+  <script src="js/apps/minesweeper.js"></script>
+  <script src="js/apps/game2048.js"></script>
+  <script src="js/apps/flappy.js"></script>
+</body>
+</html>

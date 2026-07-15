@@ -1,0 +1,585 @@
+.app-terminal {
+  background: #0a0a0a;
+  padding: 8px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+}
+
+.terminal-output {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 4px;
+  line-height: 1.8;
+}
+
+.terminal-line {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.terminal-line.error {
+  color: #ff3333;
+}
+
+.terminal-line.info {
+  color: #33aaff;
+}
+
+.terminal-line.success {
+  color: #33ff33;
+}
+
+.terminal-input-line {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.terminal-prompt {
+  color: #33ff33;
+  white-space: nowrap;
+  text-shadow: 0 0 4px rgba(51, 255, 51, 0.5);
+}
+
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #33ff33;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  outline: none;
+  caret-color: #33ff33;
+}
+
+.notepad-app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.notepad-toolbar {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: #0a1a0a;
+  border-bottom: 1px solid rgba(51, 255, 51, 0.3);
+  flex-shrink: 0;
+}
+
+.notepad-toolbar button {
+  background: #0a1a0a;
+  border: 1px solid rgba(51, 255, 51, 0.3);
+  color: #33ff33;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.notepad-toolbar button:hover {
+  background: rgba(51, 255, 51, 0.15);
+  border-color: #33ff33;
+}
+
+.notepad-textarea {
+  flex: 1;
+  background: #050510;
+  border: none;
+  color: #33ff33;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  padding: 8px;
+  resize: none;
+  outline: none;
+  line-height: 1.8;
+}
+
+.notepad-statusbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 8px;
+  background: #0a1a0a;
+  border-top: 1px solid rgba(51, 255, 51, 0.3);
+  font-size: 7px;
+  color: rgba(51, 255, 51, 0.6);
+  flex-shrink: 0;
+}
+
+.paint-app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #0a0a0a;
+}
+
+.paint-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  background: #0a1a0a;
+  border-bottom: 1px solid rgba(51, 255, 51, 0.3);
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.paint-toolbar button {
+  background: #0a1a0a;
+  border: 1px solid rgba(51, 255, 51, 0.3);
+  color: #33ff33;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.paint-toolbar button:hover,
+.paint-toolbar button.active {
+  background: rgba(51, 255, 51, 0.2);
+  border-color: #33ff33;
+}
+
+.paint-colors {
+  display: flex;
+  gap: 2px;
+  flex-wrap: wrap;
+  max-width: 140px;
+}
+
+.paint-color-swatch {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #333;
+  cursor: pointer;
+  transition: border-color 0.1s;
+}
+
+.paint-color-swatch:hover,
+.paint-color-swatch.active {
+  border-color: #33ff33;
+}
+
+.paint-canvas-wrap {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 8px;
+}
+
+.paint-canvas-wrap canvas {
+  border: 2px solid rgba(51, 255, 51, 0.3);
+  image-rendering: pixelated;
+  cursor: crosshair;
+  background: #ffffff;
+}
+
+.game-app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a0a;
+  padding: 8px;
+  position: relative;
+}
+
+.game-app canvas {
+  image-rendering: pixelated;
+  border: 2px solid rgba(51, 255, 51, 0.3);
+}
+
+.game-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 10;
+  gap: 12px;
+}
+
+.game-overlay h2 {
+  font-size: 14px;
+  color: #33ff33;
+  text-shadow: 0 0 8px #33ff33;
+}
+
+.game-overlay p {
+  font-size: 8px;
+  color: #33ff33;
+  text-align: center;
+  line-height: 2;
+}
+
+.game-overlay button {
+  background: linear-gradient(180deg, #1a3a1a 0%, #0a2a0a 100%);
+  border: 2px solid #33ff33;
+  color: #33ff33;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-shadow: 0 0 4px #33ff33;
+}
+
+.game-overlay button:hover {
+  background: linear-gradient(180deg, #2a5a2a 0%, #1a4a1a 100%);
+  box-shadow: 0 0 12px rgba(51, 255, 51, 0.4);
+}
+
+.game-score {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 8px;
+  color: #33ff33;
+  text-shadow: 0 0 4px rgba(51, 255, 51, 0.5);
+  z-index: 5;
+}
+
+.breakout-wrapper {
+  display: flex;
+  height: 100%;
+  background: #0a0a0a;
+}
+
+.breakout-game-area {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.breakout-game-area canvas {
+  image-rendering: pixelated;
+  border: 2px solid rgba(51, 255, 51, 0.3);
+}
+
+.breakout-game-area .game-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.breakout-panel {
+  width: 160px;
+  background: #0a0f0a;
+  border-left: 2px solid rgba(51, 255, 51, 0.2);
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.panel-title {
+  font-size: 9px;
+  color: #33ff33;
+  text-shadow: 0 0 6px #33ff33;
+  text-align: center;
+  padding-bottom: 8px;
+  border-bottom: 2px solid rgba(51, 255, 51, 0.3);
+}
+
+.panel-section {
+  padding: 4px 0;
+}
+
+.panel-label {
+  font-size: 7px;
+  color: #33ff33;
+  margin-bottom: 4px;
+  text-shadow: 0 0 4px rgba(51, 255, 51, 0.3);
+}
+
+.panel-text {
+  font-size: 7px;
+  color: rgba(51, 255, 51, 0.6);
+  line-height: 1.8;
+}
+
+.panel-divider {
+  height: 1px;
+  background: rgba(51, 255, 51, 0.12);
+}
+
+.panel-lives {
+  display: flex;
+  gap: 6px;
+}
+
+.life-heart {
+  font-size: 14px;
+  color: #ff3333;
+  text-shadow: 0 0 4px rgba(255, 51, 51, 0.5);
+  transition: all 0.3s;
+}
+
+.life-heart.active {
+  color: #ff3333;
+}
+
+.life-heart.lost {
+  color: #333;
+  text-shadow: none;
+  opacity: 0.3;
+}
+
+.panel-score {
+  font-size: 16px;
+  color: #33ff33;
+  text-shadow: 0 0 8px #33ff33;
+  text-align: center;
+}
+
+.calc-app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #0a0a0a;
+  padding: 8px;
+}
+
+.calc-display {
+  background: #0a1a0a;
+  border: 2px solid rgba(51, 255, 51, 0.3);
+  color: #33ff33;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 18px;
+  padding: 12px;
+  text-align: right;
+  margin-bottom: 8px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  text-shadow: 0 0 6px rgba(51, 255, 51, 0.5);
+}
+
+.calc-buttons {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+
+.calc-btn {
+  background: #1a1a2e;
+  border: 2px solid rgba(51, 255, 51, 0.2);
+  color: #33ff33;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.calc-btn:hover {
+  background: rgba(51, 255, 51, 0.15);
+  border-color: #33ff33;
+}
+
+.calc-btn:active {
+  background: rgba(51, 255, 51, 0.25);
+  transform: scale(0.95);
+}
+
+.calc-btn.func {
+  background: #1a2a1a;
+  color: #88ff88;
+}
+
+.calc-btn.op {
+  background: #1a1a3a;
+  color: #88aaff;
+  font-size: 14px;
+}
+
+.calc-btn.op:hover {
+  background: rgba(100, 150, 255, 0.2);
+  border-color: #88aaff;
+}
+
+.calc-btn.equals {
+  background: #2a1a3a;
+  color: #ff88ff;
+}
+
+.calc-btn.zero {
+  grid-column: span 2;
+}
+
+.settings-app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  gap: 4px;
+  overflow-y: auto;
+}
+
+.settings-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 8px;
+  border-bottom: 1px solid rgba(51, 255, 51, 0.1);
+}
+
+.settings-label {
+  font-size: 8px;
+  color: #33ff33;
+}
+
+.settings-colors {
+  display: flex;
+  gap: 6px;
+}
+
+.settings-color-swatch {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #333;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.settings-color-swatch:hover {
+  transform: scale(1.15);
+}
+
+.settings-color-swatch.active {
+  border-color: #ffffff;
+  box-shadow: 0 0 8px currentColor;
+}
+
+.settings-toggle {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.settings-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.settings-toggle-slider {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #1a1a2e;
+  border: 2px solid rgba(51, 255, 51, 0.3);
+  transition: all 0.2s;
+}
+
+.settings-toggle-slider::before {
+  content: '';
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  left: 2px;
+  bottom: 2px;
+  background: #33ff33;
+  transition: all 0.2s;
+}
+
+.settings-toggle input:checked + .settings-toggle-slider {
+  background: rgba(51, 255, 51, 0.2);
+  border-color: #33ff33;
+}
+
+.settings-toggle input:checked + .settings-toggle-slider::before {
+  transform: translateX(20px);
+  box-shadow: 0 0 6px #33ff33;
+}
+
+.clock-widget {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(10, 10, 20, 0.85);
+  border: 2px solid rgba(51, 255, 51, 0.4);
+  padding: 10px 16px;
+  z-index: 5;
+  cursor: move;
+  text-align: center;
+}
+
+.clock-widget-time {
+  font-size: 16px;
+  color: #33ff33;
+  text-shadow: 0 0 8px #33ff33;
+  letter-spacing: 2px;
+}
+
+.clock-widget-date {
+  font-size: 7px;
+  color: rgba(51, 255, 51, 0.6);
+  margin-top: 4px;
+}
+
+.desktop-indicator {
+  position: absolute;
+  bottom: 50px;
+  right: 16px;
+  display: flex;
+  gap: 8px;
+  z-index: 50;
+  padding: 6px 10px;
+  background: rgba(10, 10, 20, 0.7);
+  border: 1px solid rgba(51, 255, 51, 0.2);
+}
+
+.desktop-dot {
+  width: 10px;
+  height: 10px;
+  background: rgba(51, 255, 51, 0.15);
+  border: 1px solid rgba(51, 255, 51, 0.3);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.desktop-dot:hover {
+  background: rgba(51, 255, 51, 0.3);
+}
+
+.desktop-dot.active {
+  background: #33ff33;
+  box-shadow: 0 0 6px #33ff33;
+  border-color: #33ff33;
+}
+
+.snap-preview {
+  position: absolute;
+  background: rgba(51, 255, 51, 0.08);
+  border: 2px dashed rgba(51, 255, 51, 0.4);
+  z-index: 5;
+  pointer-events: none;
+  transition: all 0.15s;
+}
