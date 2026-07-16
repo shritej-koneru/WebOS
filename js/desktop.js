@@ -27,17 +27,82 @@ const Desktop = (() => {
     Storage.load();
   }
 
+  const ICON_W = 80;
+  const ICON_H = 80;
+  const ICON_PAD = 12;
+  const ICON_POSITIONS_KEY = 'retroos_icon_positions';
+
+  function getIconPositions() {
+    try { return JSON.parse(localStorage.getItem(ICON_POSITIONS_KEY)) || {}; }
+    catch { return {}; }
+  }
+
+  function saveIconPositions(positions) {
+    localStorage.setItem(ICON_POSITIONS_KEY, JSON.stringify(positions));
+  }
+
+  function getDefaultPos(index) {
+    const cols = Math.floor((window.innerWidth - 20) / (ICON_W + ICON_PAD));
+    const col = index % cols;
+    const row = Math.floor(index / cols);
+    return {
+      x: 16 + col * (ICON_W + ICON_PAD),
+      y: 16 + row * (ICON_H + ICON_PAD)
+    };
+  }
+
   function createDesktopIcons() {
     const container = document.getElementById('desktop-icons');
     container.innerHTML = '';
-    apps.forEach(app => {
+    const positions = getIconPositions();
+    const desktop = document.getElementById('desktop');
+
+    apps.forEach((app, i) => {
       const icon = document.createElement('div');
       icon.className = 'desktop-icon';
+      icon.dataset.appId = app.id;
+      const pos = positions[app.id] || getDefaultPos(i);
+      icon.style.left = pos.x + 'px';
+      icon.style.top = pos.y + 'px';
       icon.innerHTML = `
         <div class="icon">${app.icon}</div>
         <div class="label">${app.name}</div>
       `;
       icon.addEventListener('dblclick', () => app.open());
+
+      let dragOffX, dragOffY, dragging = false;
+      icon.addEventListener('mousedown', (e) => {
+        if (e.button !== 0) return;
+        dragging = false;
+        dragOffX = e.clientX - icon.offsetLeft;
+        dragOffY = e.clientY - icon.offsetTop;
+
+        function onMove(ev) {
+          dragging = true;
+          let nx = ev.clientX - dragOffX;
+          let ny = ev.clientY - dragOffY;
+          nx = Math.max(0, Math.min(desktop.clientWidth - ICON_W, nx));
+          ny = Math.max(0, Math.min(desktop.clientHeight - ICON_H - 44, ny));
+          icon.style.left = nx + 'px';
+          icon.style.top = ny + 'px';
+          ev.preventDefault();
+        }
+
+        function onUp() {
+          document.removeEventListener('mousemove', onMove);
+          document.removeEventListener('mouseup', onUp);
+          if (dragging) {
+            const allPos = getIconPositions();
+            allPos[app.id] = { x: parseInt(icon.style.left), y: parseInt(icon.style.top) };
+            saveIconPositions(allPos);
+          }
+        }
+
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', onUp);
+        e.preventDefault();
+      });
+
       container.appendChild(icon);
     });
   }
@@ -161,6 +226,12 @@ const Desktop = (() => {
         icon.classList.add('selected');
         e.stopPropagation();
       });
+    });
+
+    document.getElementById('desktop').addEventListener('dblclick', (e) => {
+      if (e.target.id === 'desktop') {
+        document.querySelectorAll('.desktop-icon.selected').forEach(el => el.classList.remove('selected'));
+      }
     });
   }
 
