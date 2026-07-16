@@ -215,14 +215,19 @@ const Game2048App = (() => {
     document.addEventListener('keydown', keyHandler);
     keyHandlers[winId] = keyHandler;
 
-    document.getElementById('start-' + winId).addEventListener('click', () => {
+    Tutorial.showIfNew(winId, '2048', [
+      'Arrow keys to slide tiles',
+      'Matching numbers merge',
+      'Get the 2048 tile to win!'
+    ], () => {
+      document.getElementById('start-' + winId).addEventListener('click', () => {
+        init();
+        draw();
+        document.getElementById('overlay-' + winId).classList.add('hidden');
+      });
       init();
       draw();
-      document.getElementById('overlay-' + winId).classList.add('hidden');
     });
-
-    init();
-    draw();
   }
 
   function cleanup(id) {

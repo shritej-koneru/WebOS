@@ -235,14 +235,19 @@ const MinesweeperApp = (() => {
     canvas.addEventListener('contextmenu', onContextMenu);
     canvasHandlers[winId] = { canvas, click: onCanvasClick, contextmenu: onContextMenu };
 
-    document.getElementById('start-' + winId).addEventListener('click', () => {
+    Tutorial.showIfNew(winId, 'minesweeper', [
+      'Left-click to reveal a cell',
+      'Right-click to flag a mine',
+      'Numbers show adjacent mines'
+    ], () => {
+      document.getElementById('start-' + winId).addEventListener('click', () => {
+        init();
+        draw();
+        document.getElementById('overlay-' + winId).classList.add('hidden');
+      });
       init();
       draw();
-      document.getElementById('overlay-' + winId).classList.add('hidden');
     });
-
-    init();
-    draw();
   }
 
   function cleanup(id) {

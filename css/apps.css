@@ -242,6 +242,27 @@
   box-shadow: 0 0 12px rgba(51, 255, 51, 0.4);
 }
 
+.tutorial-controls {
+  max-width: 280px;
+  text-align: left;
+}
+
+.tutorial-controls p {
+  font-size: 8px;
+  color: #33ff33;
+  line-height: 2.2;
+  margin: 0;
+  padding-left: 8px;
+  position: relative;
+}
+
+.tutorial-controls p::before {
+  content: '\25B8';
+  position: absolute;
+  left: 0;
+  color: #66ff66;
+}
+
 .game-score {
   position: absolute;
   top: 8px;

@@ -307,9 +307,15 @@ const TetrisApp = (() => {
 
     document.addEventListener('keydown', keyHandler);
     keyHandlers[winId] = keyHandler;
-    document.getElementById('start-' + winId).addEventListener('click', startGame);
-    init();
-    draw();
+    Tutorial.showIfNew(winId, 'tetris', [
+      'Arrow Left/Right to move piece',
+      'Arrow Up to rotate, Down to soft drop',
+      'Space for hard drop'
+    ], () => {
+      document.getElementById('start-' + winId).addEventListener('click', startGame);
+      init();
+      draw();
+    });
   }
 
   function cleanup(id) {

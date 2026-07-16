@@ -205,10 +205,16 @@ const PongApp = (() => {
 
     gameEl.addEventListener('click', () => gameEl.focus());
 
-    document.getElementById('start-pvp-' + winId).addEventListener('click', () => startGame(false));
-    document.getElementById('start-ai-' + winId).addEventListener('click', () => startGame(true));
-    init();
-    draw();
+    Tutorial.showIfNew(winId, 'pong', [
+      'W/S or Arrow Up/Down to move paddle',
+      'Space or Click to start',
+      'First to 10 wins!'
+    ], () => {
+      document.getElementById('start-pvp-' + winId).addEventListener('click', () => startGame(false));
+      document.getElementById('start-ai-' + winId).addEventListener('click', () => startGame(true));
+      init();
+      draw();
+    });
   }
 
   function cleanup(id) {

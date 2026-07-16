@@ -194,9 +194,15 @@ const FlappyApp = (() => {
     keyHandlers[winId] = onKeyDown;
     canvasHandlers[winId] = { canvas, click: onCanvasClick, touch: onCanvasTouch };
 
-    document.getElementById('start-' + winId).addEventListener('click', startGame);
-    init();
-    draw();
+    Tutorial.showIfNew(winId, 'flappy', [
+      'Space / Click / Tap to flap',
+      'Avoid pipes and the ground',
+      'How far can you go?'
+    ], () => {
+      document.getElementById('start-' + winId).addEventListener('click', startGame);
+      init();
+      draw();
+    });
   }
 
   function cleanup(id) {

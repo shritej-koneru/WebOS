@@ -343,15 +343,20 @@ const BreakoutApp = (() => {
       }
     });
 
-    document.getElementById('start-' + winId).addEventListener('click', () => {
+    Tutorial.showIfNew(winId, 'breakout', [
+      'Left/Right Arrow or A/D to move paddle',
+      'Break all bricks to win',
+      "Don't let the ball fall!"
+    ], () => {
+      document.getElementById('start-' + winId).addEventListener('click', () => {
+        init();
+        draw();
+        document.getElementById('overlay-' + winId).classList.add('hidden');
+        gameLoops[winId] = setInterval(update, 1000 / 60);
+      });
       init();
       draw();
-      document.getElementById('overlay-' + winId).classList.add('hidden');
-      gameLoops[winId] = setInterval(update, 1000 / 60);
     });
-
-    init();
-    draw();
   }
 
   function cleanup(id) {

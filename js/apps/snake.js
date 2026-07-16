@@ -165,9 +165,15 @@ const SnakeApp = (() => {
 
     document.addEventListener('keydown', keyHandler);
     keyHandlers[winId] = keyHandler;
-    document.getElementById('start-' + winId).addEventListener('click', startGame);
-    init();
-    draw();
+    Tutorial.showIfNew(winId, 'snake', [
+      'Arrow Keys or WASD to move',
+      'Eat food to grow longer',
+      "Don't hit walls or yourself!"
+    ], () => {
+      document.getElementById('start-' + winId).addEventListener('click', startGame);
+      init();
+      draw();
+    });
   }
 
   function cleanup(id) {
