@@ -42,15 +42,21 @@ const Tutorial = (() => {
     }
 
     const controlHTML = controls.map(c => `<p>${c}</p>`).join('');
-    overlay.innerHTML = `
+    const div = document.createElement('div');
+    div.id = 'tutorial-' + winId;
+    div.className = 'game-overlay tutorial-layer';
+    div.innerHTML = `
       <h2>HOW TO PLAY</h2>
       <div class="tutorial-controls">${controlHTML}</div>
       <button id="tutorial-ok-${winId}">GOT IT!</button>
     `;
-    overlay.classList.remove('hidden');
+
+    const parent = overlay.parentNode;
+    parent.appendChild(div);
 
     document.getElementById('tutorial-ok-' + winId).addEventListener('click', () => {
       markSeen(gameId);
+      div.remove();
       onDismiss();
     });
   }
