@@ -42,6 +42,12 @@
   flex-direction: column;
   gap: 8px;
   z-index: 1;
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+#desktop-icons::-webkit-scrollbar {
+  display: none;
 }
 
 .desktop-icon {
