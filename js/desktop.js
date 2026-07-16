@@ -34,7 +34,7 @@ const Desktop = (() => {
 
   function getIconPositions() {
     try { return JSON.parse(localStorage.getItem(ICON_POSITIONS_KEY)) || {}; }
-    catch { return {}; }
+    catch (e) { return {}; }
   }
 
   function saveIconPositions(positions) {

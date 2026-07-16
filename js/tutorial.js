@@ -4,7 +4,7 @@ const Tutorial = (() => {
   function getSeen() {
     try {
       return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-    } catch {
+    } catch (e) {
       return {};
     }
   }
